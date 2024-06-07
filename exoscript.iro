@@ -156,6 +156,39 @@ contexts[] {
          : include "randoVariable";
       }
    }
+   
+   atSignProcessing : context {
+      // The "@" check for exoloader markup
+      : inline_push {
+         regex         \= (@)
+         styles []      = .conditionals;
+
+         : eol_pop {}
+
+         // imperatives with a preceding @
+         : pattern {
+            regex       \= (insert|replace)
+            styles []   = .keywords;
+         }
+         
+         //exolodder syntax includes | as indicators
+         : pattern {
+            regex       \= (\|)
+            styles []   = .conditionals;
+         }
+         
+         //exolodder syntax includes > as indicators
+         : pattern {
+            regex       \= (\>)
+            styles []   = .game_variables;
+         }
+
+         : include "main" ;
+         : include "vars" ;
+         : include "opsAndLiterals";
+         : include "randoVariable";
+      }
+   }
 
    bracketProcessing : context {
 
@@ -301,13 +334,14 @@ contexts[] {
       // comments
       : pattern {
          uid            = uid_single_line_comment
-         regex         \= (====(=+))|(/\*(.*?)$|//(.*?)$|#(.*?))$
+         regex         \= (====(=+))|(/\*(.*?)$|//(.*?)$)$
          styles[]       = .comments;
       }
 
       : include "jumpProcessing";
       : include "tildeProcessing";
       : include "bracketProcessing";
+      : include "atSignProcessing";
 
 
       : include "realTextHighlighting";
