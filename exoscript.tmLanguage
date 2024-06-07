@@ -5,15 +5,12 @@
 <dict>
   <key>fileTypes</key>
   <array> 
-    <string>txt</string>
-    <string>exo</string>
-    <string>exotxt</string>
-    <string>exo.txt</string>
+    <string>sample</string>
    </array>
   <key>name</key>
-  <string>Exoscript</string>
+  <string>sample</string>
   <key>patterns</key>
-  <array>
+  <array> 
     <dict>
       <key>include</key>
       <string>#main</string>
@@ -28,7 +25,7 @@
     <key>main</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>include</key>
           <string>#storyIdProcessing</string>
@@ -41,7 +38,7 @@
         </dict>
         <dict>
           <key>match</key>
-          <string>(====(=+))|(/\*(.*?)$|//(.*?)$|#(.*?))$</string>
+          <string>(====(=+))|(/\*(.*?)$|//(.*?)$)$</string>
           <key>name</key>
           <string>comment.line.sample</string>
         </dict>
@@ -59,14 +56,93 @@
         </dict>
         <dict>
           <key>include</key>
+          <string>#atSignProcessing</string>
+        </dict>
+        <dict>
+          <key>include</key>
           <string>#realTextHighlighting</string>
+        </dict>
+       </array>
+    </dict>
+    <key>atSignProcessing</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>begin</key>
+          <string>(@)</string>
+          <key>beginCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>keyword punctuation.sample</string>
+            </dict>
+          </dict>
+          <key>patterns</key>
+          <array> 
+            <dict>
+              <key>include</key>
+              <string>#atSignProcessing__1</string>
+            </dict>
+           </array>
+          <key>end</key>
+          <string>(^(?=.{0,1})(?:|))</string>
+          <key>endCaptures</key>
+          <dict>
+            <key>1</key>
+            <dict>
+              <key>name</key>
+              <string>comment.line.sample</string>
+            </dict>
+          </dict>
+        </dict>
+       </array>
+    </dict>
+    <key>atSignProcessing__1</key>
+    <dict>
+      <key>patterns</key>
+      <array> 
+        <dict>
+          <key>match</key>
+          <string>(insert|replace)</string>
+          <key>name</key>
+          <string>keyword.control.sample</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(\|)</string>
+          <key>name</key>
+          <string>keyword punctuation.sample</string>
+        </dict>
+        <dict>
+          <key>match</key>
+          <string>(\&gt;)</string>
+          <key>name</key>
+          <string>variable.language.sample</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#main</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#vars</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#opsAndLiterals</string>
+        </dict>
+        <dict>
+          <key>include</key>
+          <string>#randoVariable</string>
         </dict>
        </array>
     </dict>
     <key>bracketProcessing</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>begin</key>
           <string>(\[if(\s*?)random(\s*?):)</string>
@@ -79,7 +155,7 @@
             </dict>
           </dict>
           <key>patterns</key>
-          <array>
+          <array> 
             <dict>
               <key>include</key>
               <string>#bracketProcessing__1</string>
@@ -108,7 +184,7 @@
             </dict>
           </dict>
           <key>patterns</key>
-          <array>
+          <array> 
             <dict>
               <key>include</key>
               <string>#bracketProcessing__2</string>
@@ -130,7 +206,7 @@
     <key>bracketProcessing__1</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>match</key>
           <string>(\|)</string>
@@ -148,7 +224,7 @@
     <key>bracketProcessing__2</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>include</key>
           <string>#main</string>
@@ -182,7 +258,7 @@
     <key>interpolatingVariables</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>begin</key>
           <string>((\[\=|\[)((?![A-Za-z\x{00c0}-\x{00d6}\x{00d8}-\x{00f6}\x{00f8}-\x{00ff}])))</string>
@@ -195,7 +271,7 @@
             </dict>
           </dict>
           <key>patterns</key>
-          <array>
+          <array> 
             <dict>
               <key>include</key>
               <string>#uid_interpolating_vars_in_text_open</string>
@@ -217,7 +293,7 @@
     <key>jumpProcessing</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>begin</key>
           <string>(^(\s*?)(&gt;+))</string>
@@ -319,13 +395,13 @@
     <key>jumpProcessing__1</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
        </array>
     </dict>
     <key>opsAndLiterals</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>match</key>
           <string>((?&lt;![A-Za-z\x{00c0}-\x{00d6}\x{00d8}-\x{00f6}\x{00f8}-\x{00ff}])(true|false|none|null)(?![A-Za-z\x{00c0}-\x{00d6}\x{00d8}-\x{00f6}\x{00f8}-\x{00ff}]))</string>
@@ -355,7 +431,7 @@
     <key>randoVariable</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>match</key>
           <string>((?&lt;![A-Za-z\x{00c0}-\x{00d6}\x{00d8}-\x{00f6}\x{00f8}-\x{00ff}])([A-Za-z\x{00c0}-\x{00ff}_\x{0024}]([A-Za-z\x{00c0}-\x{00ff}_\x{0024}0-9])+)(?![A-Za-z\x{00c0}-\x{00d6}\x{00d8}-\x{00f6}\x{00f8}-\x{00ff}]))</string>
@@ -367,7 +443,7 @@
     <key>realTextHighlighting</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>include</key>
           <string>#interpolatingVariables</string>
@@ -377,7 +453,7 @@
     <key>storyIdProcessing</key>
     <dict>
       <key>patterns</key>
-      <array>
+      <array> 
         <dict>
           <key>begin</key>
           <string>(^===\s)</string>
