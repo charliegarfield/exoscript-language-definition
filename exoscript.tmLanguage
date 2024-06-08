@@ -3,12 +3,15 @@
 <plist version="1.0" >
 <!-- Generated via Iro -->
 <dict>
-  <key>fileTypes</key>
+  <key>fileTypes</key>  
   <array> 
-    <string>sample</string>
-   </array>
+    <string>txt</string>
+    <string>exo</string>
+    <string>exotxt</string>
+    <string>exo.txt</string>
+  </array>
   <key>name</key>
-  <string>sample</string>
+  <string>Exoscript</string>
   <key>patterns</key>
   <array> 
     <dict>
